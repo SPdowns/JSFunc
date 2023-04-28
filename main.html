@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>spdowns.io</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+
+  header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 5px;
+    font-size: 1.2em;
+    font-weight: normal;
+  }
+
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+
+  #sidebar.show {
+    display: flex;
+  }
+
+  .button-bar {
+    background-color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  #content {
+    padding: 20px;
+  }
+
+  #youtube-videos {
+    display: none;
+  }
+
+  iframe {
+    width: 100%;
+    height: 315px;
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <button id="menu-btn" style="position: absolute; left: 20px; top: 20px;">☰</button>
+    <h1 style="display: inline;">spdowns.io</h1>
+    <h2>Discovering everyday life with and without technology</h2>
+  </header>
+
+  <div id="sidebar">
+    <button class="button-bar" onclick="showHomePage()">Home</button>
+    <button class="button-bar" onclick="showYoutubeVideos()">YouTube</button>
+  </div>
+
+  <div id="content">
+    <div id="home-page">
+      <p>Welcome to spdowns.io! Here we explore life with and without technology.</p>
+    </div>
+    <div id="youtube-videos">
+      <!-- Replace these video links with your own YouTube video links -->
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    function showHomePage() {
+      document.getElementById('home-page').style.display = 'block';
+      document.getElementById('youtube-videos').style.display = 'none';
+      document.getElementById('sidebar').classList.remove('show');
+    }
+
+    function showYoutubeVideos() {
+      document.getElementById('home-page').style.display = 'none';
+      document.getElementById('youtube-videos').style.display = 'block';
+      document.getElementById('sidebar').classList.remove('show');
+    }
+
+    document.getElementById('menu-btn').addEventListener('click', function () {
+      document.getElementById('sidebar').classList.toggle('show');
+    });
+
+    document.body.addEventListener('click', function (event) {
+      if (event.target.closest('#sidebar') || event.target.id === 'menu-btn') {
+        return;
+      }
+      if (document.getElementById('sidebar').classList.contains('show')) {
+        document.getElementById('sidebar').classList.remove('show');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      showHomePage();
+    });
+  </script>
+</body>
+
+<!-- With this code, you should now have a fully functional webpage that displays a header, subheader, sidebar with two button-bars, and content that changes based on the button clicked. The menu button (☰) will toggle the sidebar on both mobile and desktop devices. -->
